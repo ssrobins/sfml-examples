@@ -1,0 +1,4 @@
+variables:
+  desktop_only: 'true'
+
+include: 'https://gitlab.com/ssrobins/ci/raw/master/cpp.yml'
