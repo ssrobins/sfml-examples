@@ -34,7 +34,7 @@ if(MSVC)
         $<$<CONFIG:Release>:/Oi> # Generate intrinsic functions
         /permissive- # Standard C++ conformance
         /sdl # Enable additional security checks
-        /WX # Warning as error
+        #/WX # Warning as error
         $<$<CONFIG:Debug>:/ZI> # Produces a program database (PDB) that supports edit and continue
         $<$<CONFIG:Release>:/Zi> # Produces a program database (PDB)
     )
