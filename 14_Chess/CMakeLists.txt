@@ -1,13 +1,11 @@
-set(target_name 14_Chess)
+add_executable_custom(14_Chess)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(14_Chess PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(14_Chess
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(14_Chess)

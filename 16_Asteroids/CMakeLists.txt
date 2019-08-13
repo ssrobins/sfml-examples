@@ -1,13 +1,11 @@
-set(target_name 16_Asteroids)
+add_executable_custom(16_Asteroids)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(16_Asteroids PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(16_Asteroids
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(16_Asteroids)

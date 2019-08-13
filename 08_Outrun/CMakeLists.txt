@@ -1,13 +1,11 @@
-set(target_name 08_Outrun)
+add_executable_custom(08_Outrun)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(08_Outrun PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(08_Outrun
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(08_Outrun)

@@ -1,13 +1,11 @@
-set(target_name 13_Tron)
+add_executable_custom(13_Tron)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(13_Tron PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(13_Tron
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(13_Tron)

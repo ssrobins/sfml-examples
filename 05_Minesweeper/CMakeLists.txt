@@ -1,13 +1,11 @@
-set(target_name 05_Minesweeper)
+add_executable_custom(05_Minesweeper)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(05_Minesweeper PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(05_Minesweeper
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(05_Minesweeper)

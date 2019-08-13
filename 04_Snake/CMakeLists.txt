@@ -1,13 +1,11 @@
-set(target_name 04_Snake)
+add_executable_custom(04_Snake)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(04_Snake PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(04_Snake
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(04_Snake)

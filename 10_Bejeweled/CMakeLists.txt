@@ -1,13 +1,11 @@
-set(target_name 10_Bejeweled)
+add_executable_custom(10_Bejeweled)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(10_Bejeweled PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(10_Bejeweled
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(10_Bejeweled)

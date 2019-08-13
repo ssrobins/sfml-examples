@@ -1,13 +1,11 @@
-set(target_name 07_Racing_Top_Down)
+add_executable_custom(07_Racing_Top_Down)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(07_Racing_Top_Down PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(07_Racing_Top_Down
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(07_Racing_Top_Down)

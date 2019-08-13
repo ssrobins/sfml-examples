@@ -1,13 +1,11 @@
-set(target_name 01_Tetris)
+add_executable_custom(01_Tetris)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(01_Tetris PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(01_Tetris
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(01_Tetris)

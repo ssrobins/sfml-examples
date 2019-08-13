@@ -1,13 +1,11 @@
-set(target_name 12_Mahjong_Solitaire)
+add_executable_custom(12_Mahjong_Solitaire)
 
-add_executable_custom(${target_name})
-
-target_sources(${target_name} PRIVATE
+target_sources(12_Mahjong_Solitaire PRIVATE
     main.cpp
 )
 
-target_link_libraries(${target_name}
+target_link_libraries(12_Mahjong_Solitaire
     CONAN_PKG::sfml
 )
 
-install_executable(${target_name})
+install_executable(12_Mahjong_Solitaire)
