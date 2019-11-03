@@ -1,6 +1,6 @@
 variables:
   CONAN_USER_HOME: "$CI_PROJECT_DIR"
-  desktop_only: 'true'
+  CONAN_REVISIONS_ENABLED: "1"
 
 stages:
   - build
@@ -8,25 +8,32 @@ stages:
 before_script:
   - cmake --version
   - conan --version
-  - conan remote add conan https://api.bintray.com/conan/stever/conan
 
-android:
-  image: registry.gitlab.com/ssrobins/docker-android-build
+.android:
+  image: registry.gitlab.com/ssrobins/docker-android-build:jdk8u212b04-ndk20
   stage: build
   script:
     - lscpu
     - cat /proc/meminfo | grep MemTotal
     - java -version
-    - ./build_android.sh
-    - cd build_android
-    - mkdir _package
-    - find . -name \*.apk -exec mv {} _package/ \;
+    - ./build_$android_arch.sh
+    - cd build_$android_arch
   artifacts:
     paths:
-      - build_android/_package/*.apk
+      - build_$android_arch/_package/*.apk
   except:
     variables:
       - $desktop_only == "true"
+
+android-v7a:
+  variables:
+    android_arch: "android-v7a"
+  extends: .android
+
+android-v8a:
+  variables:
+    android_arch: "android-v8a"
+  extends: .android
 
 ios:
   stage: build
@@ -38,18 +45,8 @@ ios:
     variables:
       - $desktop_only == "true"
 
-ios-sim:
-  stage: build
-  script:
-    - ./build_ios_sim.sh
-  tags:
-    - ios
-  except:
-    variables:
-      - $desktop_only == "true"
-
 linux:
-  image: registry.gitlab.com/ssrobins/docker-linux-build
+  image: registry.gitlab.com/ssrobins/docker-linux-build:gcc9.2.0
   stage: build
   script:
     - lscpu
@@ -73,19 +70,9 @@ mac:
 windows:
   stage: build
   script:
-    - build_windows.bat
+    - .\build_windows.bat
   artifacts:
     paths:
       - build_windows/_package/*.zip
-  tags:
-    - windows
-
-windows64:
-  stage: build
-  script:
-    - build_windows64.bat
-  artifacts:
-    paths:
-      - build_windows64/_package/*.zip
   tags:
     - windows
