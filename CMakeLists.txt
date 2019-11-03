@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(Rectangles)
+project(SFMLExamples VERSION 0.1.0)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS NO_OUTPUT_DIRS)
@@ -33,4 +33,6 @@ endif()
 add_subdirectory(15_Volleyball)
 add_subdirectory(16_Asteroids)
 
+set(CPACK_ARCHIVE_COMPONENT_INSTALL ON)
+set(CPACK_PACKAGE_FILE_NAME ${CMAKE_PROJECT_NAME})
 include(CPack)
