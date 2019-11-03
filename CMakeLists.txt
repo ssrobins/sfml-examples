@@ -5,11 +5,11 @@ project(Rectangles)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS NO_OUTPUT_DIRS)
 
-include(cmake/global_settings.cmake)
+include(${CONAN_CMAKE_UTILS_ROOT}/global_settings.cmake)
 
 # Helper functions
-include(cmake/add_executable_custom.cmake)
-include(cmake/install_executable.cmake)
+include(${CONAN_CMAKE_UTILS_ROOT}/add_executable_custom.cmake)
+include(${CONAN_CMAKE_UTILS_ROOT}/install_executable.cmake)
 
 # From 16 games in C++/SFML YouTube tutorial:
 # https://www.youtube.com/user/FamTrinli/playlists
