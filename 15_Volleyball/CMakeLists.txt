@@ -4,6 +4,10 @@ target_sources(15_Volleyball PRIVATE
     main.cpp
 )
 
+target_assets(15_Volleyball
+    assets
+)
+
 target_include_directories(15_Volleyball PRIVATE
     .
 )

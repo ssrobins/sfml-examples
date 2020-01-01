@@ -4,6 +4,10 @@ target_sources(02_Doodle_Jump PRIVATE
     main.cpp
 )
 
+target_assets(02_Doodle_Jump
+    assets
+)
+
 target_link_libraries(02_Doodle_Jump
     CONAN_PKG::sfml
 )

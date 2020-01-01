@@ -4,6 +4,10 @@ target_sources(13_Tron PRIVATE
     main.cpp
 )
 
+target_assets(13_Tron
+    assets
+)
+
 target_link_libraries(13_Tron
     CONAN_PKG::sfml
 )

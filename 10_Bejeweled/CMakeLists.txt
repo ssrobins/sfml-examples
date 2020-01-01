@@ -4,6 +4,10 @@ target_sources(10_Bejeweled PRIVATE
     main.cpp
 )
 
+target_assets(10_Bejeweled
+    assets
+)
+
 target_link_libraries(10_Bejeweled
     CONAN_PKG::sfml
 )

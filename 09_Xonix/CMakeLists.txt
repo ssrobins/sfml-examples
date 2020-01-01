@@ -4,6 +4,10 @@ target_sources(09_Xonix PRIVATE
     main.cpp
 )
 
+target_assets(09_Xonix
+    assets
+)
+
 target_link_libraries(09_Xonix
     CONAN_PKG::sfml
 )

@@ -4,6 +4,10 @@ target_sources(14_Chess PRIVATE
     main.cpp
 )
 
+target_assets(14_Chess
+    assets
+)
+
 target_link_libraries(14_Chess
     CONAN_PKG::sfml
 )

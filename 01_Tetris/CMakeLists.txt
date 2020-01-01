@@ -4,6 +4,10 @@ target_sources(01_Tetris PRIVATE
     main.cpp
 )
 
+target_assets(01_Tetris
+    assets
+)
+
 target_link_libraries(01_Tetris
     CONAN_PKG::sfml
 )

@@ -4,6 +4,10 @@ target_sources(12_Mahjong_Solitaire PRIVATE
     main.cpp
 )
 
+target_assets(12_Mahjong_Solitaire
+    assets
+)
+
 target_link_libraries(12_Mahjong_Solitaire
     CONAN_PKG::sfml
 )

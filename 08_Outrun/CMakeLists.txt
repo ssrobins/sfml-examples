@@ -4,6 +4,10 @@ target_sources(08_Outrun PRIVATE
     main.cpp
 )
 
+target_assets(08_Outrun
+    assets
+)
+
 target_link_libraries(08_Outrun
     CONAN_PKG::sfml
 )

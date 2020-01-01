@@ -4,6 +4,10 @@ target_sources(05_Minesweeper PRIVATE
     main.cpp
 )
 
+target_assets(05_Minesweeper
+    assets
+)
+
 target_link_libraries(05_Minesweeper
     CONAN_PKG::sfml
 )
