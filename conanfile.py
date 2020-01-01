@@ -5,7 +5,7 @@ class Conan(ConanFile):
     generators = "cmake"
 
     def build_requirements(self):
-        self.build_requires.add("cmake_utils/0.1.0#89a9bc6923fea4dabf19de6aa6b7ddcf8667b2ee")
+        self.build_requires.add("cmake_utils/0.3.1#1cf9333e6fba1b7350ec8d4d06f737b54d163eef")
 
     def requirements(self):
         self.requires.add("box2d/2.3.1#18cbe3ca36efde484001aeca05edfa62cdc0bcfd")
