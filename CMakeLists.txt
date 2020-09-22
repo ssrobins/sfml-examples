@@ -21,7 +21,7 @@ elseif(ANDROID_ABI STREQUAL arm64-v8a)
     set(ANDROID_PLATFORM android-${android_min_sdk_version})
     set(android_arch armv8)
 elseif(APPLE)
-    set(xcode_version 11.0)
+    set(xcode_version 12.0)
 endif()
 
 project(SFMLExamples VERSION 0.1.0)
