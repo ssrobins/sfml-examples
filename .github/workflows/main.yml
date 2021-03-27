@@ -23,7 +23,7 @@ jobs:
         include:
           - name: linux
             os: ubuntu-20.04
-            container: ghcr.io/ssrobins/docker-linux-build:gcc9.3.0
+            container: ghcr.io/ssrobins/docker-linux-build:gcc10.2.0
             build_script: ./cmake.py linux --build --test --package --config Release
             artifact_path: build_linux/_package/*.tar.gz
           - name: macos
@@ -61,7 +61,7 @@ jobs:
       - name: Build
         run:  ${{ matrix.build_script }}
         env:
-          DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
+          DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
 
       - uses: actions/upload-artifact@v2
         with:
