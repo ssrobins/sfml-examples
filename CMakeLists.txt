@@ -27,7 +27,7 @@ endif()
 project(SFMLExamples VERSION 0.1.0)
 
 if(ANDROID)
-    set(conan_args -s os=Android -s os.api_level=${android_min_sdk_version} -s arch=${android_arch} -s compiler=clang -s compiler.version=8 -s compiler.libcxx=libc++)
+    set(conan_args -s os=Android -s os.api_level=${android_min_sdk_version} -s arch=${android_arch} -s compiler=clang -s compiler.version=11 -s compiler.libcxx=c++_static)
 elseif(IOS)
     set(CMAKE_OSX_ARCHITECTURES "armv7 arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET 9.0)
