@@ -1,59 +1,49 @@
 {
-    "version": 1,
+    "version": 3,
     "cmakeMinimumRequired": {
         "major": 3,
-        "minor": 19,
+        "minor": 21,
         "patch": 0
     },
     "configurePresets": [
         {
-            "name": "androidarm",
-            "generator": "Ninja Multi-Config",
-            "binaryDir": "build_${presetName}",
-            "cacheVariables": {
-                "ANDROID_ABI": {
-                    "type": "STRING",
-                    "value": "armeabi-v7a"
-                }
-            }
-        },
-        {
-            "name": "androidarm64",
-            "generator": "Ninja Multi-Config",
-            "binaryDir": "build_${presetName}",
-            "cacheVariables": {
-                "ANDROID_ABI": {
-                    "type": "STRING",
-                    "value": "arm64-v8a"
-                }
-            }
-        },
-        {
-            "name": "ios",
-            "generator": "Xcode",
-            "binaryDir": "build_${presetName}",
-            "cacheVariables": {
-                "CMAKE_SYSTEM_NAME": {
-                    "type": "STRING",
-                    "value": "iOS"
-                }
-            }
+            "name": "default",
+            "hidden": true,
+            "cmakeExecutable": "cmake.exe"
         },
         {
             "name": "linux",
+            "inherits": "default",
             "generator": "Ninja Multi-Config",
-            "binaryDir": "build_${presetName}"
+            "binaryDir": "${sourceDir}/build_${presetName}",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
         },
         {
             "name": "macos",
+            "inherits": "default",
             "generator": "Xcode",
-            "binaryDir": "build_${presetName}"
+            "binaryDir": "${sourceDir}/build_${presetName}",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
         },
         {
             "name": "windows",
+            "inherits": "default",
             "generator": "Visual Studio 16 2019",
             "architecture": "Win32",
-            "binaryDir": "build_${presetName}"
+            "binaryDir": "${sourceDir}/build_${presetName}",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
         }
     ]
 }
