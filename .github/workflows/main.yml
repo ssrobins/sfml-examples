@@ -43,7 +43,7 @@ jobs:
         run: sudo apt-get install ninja-build python3-setuptools -y
 
       - name: Import Code-Signing Certificates
-        if: matrix.name == 'ios' || matrix.name == 'macos'
+        if: matrix.name == 'macos'
         uses: apple-actions/import-codesign-certs@v1
         with:
           p12-file-base64: ${{ secrets.APPLE_CERTIFICATES }}
