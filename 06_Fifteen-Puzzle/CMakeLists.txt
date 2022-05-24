@@ -9,7 +9,7 @@ target_assets(06_Fifteen-Puzzle
 )
 
 target_link_libraries(06_Fifteen-Puzzle
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(06_Fifteen-Puzzle)

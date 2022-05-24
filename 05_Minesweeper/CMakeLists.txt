@@ -9,7 +9,7 @@ target_assets(05_Minesweeper
 )
 
 target_link_libraries(05_Minesweeper
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(05_Minesweeper)

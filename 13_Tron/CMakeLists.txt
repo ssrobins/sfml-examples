@@ -9,7 +9,7 @@ target_assets(13_Tron
 )
 
 target_link_libraries(13_Tron
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(13_Tron)

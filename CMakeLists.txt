@@ -19,7 +19,7 @@ endif()
 
 if(APPLE)
     set(CMAKE_OSX_DEPLOYMENT_TARGET 10.9)
-    set(conan_args -s os.version=${CMAKE_OSX_DEPLOYMENT_TARGET} -s compiler.version=${compiler_version} -s compiler.cppstd=${CMAKE_CXX_STANDARD})
+    set(conan_args os.version=${CMAKE_OSX_DEPLOYMENT_TARGET};compiler.version=${compiler_version};compiler.cppstd=${CMAKE_CXX_STANDARD})
 elseif(UNIX)
     if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         set(compiler clang)
@@ -28,26 +28,47 @@ elseif(UNIX)
     else()
         message("Unhandled compiler, ${CMAKE_CXX_COMPILER_ID}, Conan install command may fail")
     endif()
-    set(conan_args -s compiler=${compiler} -s compiler.version=${compiler_version} -s compiler.libcxx=libstdc++11 -s compiler.cppstd=${CMAKE_CXX_STANDARD})
+    set(conan_args compiler=${compiler};compiler.version=${compiler_version};compiler.libcxx=libstdc++11;compiler.cppstd=${CMAKE_CXX_STANDARD})
 elseif(MSVC)
-    set(conan_args -s arch=x86 -s compiler=msvc -s compiler.version=${compiler_version} -s compiler.runtime=static -s compiler.cppstd=${CMAKE_CXX_STANDARD})
+    set(conan_args arch=x86;compiler=msvc;compiler.version=${compiler_version};compiler.runtime=static;compiler.cppstd=${CMAKE_CXX_STANDARD})
 else()
     message("Unhandled platform, Conan install command may fail")
 endif()
 
-option(CONAN_BUILD_MISSING_PKGS "Build missing Conan packages" ON)
-if(CONAN_BUILD_MISSING_PKGS)
-    set(conan_build_option --build=missing)
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+    message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+    file(DOWNLOAD
+        "https://raw.githubusercontent.com/conan-io/cmake-conan/0.18.1/conan.cmake"
+        "${CMAKE_BINARY_DIR}/conan.cmake"
+        TLS_VERIFY ON)
 endif()
 
-execute_process(
-    COMMAND conan remote add artifactory-ssrobins https://ssrobins.jfrog.io/artifactory/api/conan/conan --insert --force
-    COMMAND conan install --install-folder ${CMAKE_BINARY_DIR} --update ${CMAKE_SOURCE_DIR} ${conan_build_option} ${conan_args}
-    RESULT_VARIABLE conan_result
-)
-if(conan_result)
-    message(FATAL_ERROR "Conan error")
+include(${CMAKE_BINARY_DIR}/conan.cmake)
+
+option(CONAN_BUILD_MISSING_PKGS "Build missing Conan packages" ON)
+if(CONAN_BUILD_MISSING_PKGS)
+    set(conan_build_option missing)
 endif()
+
+conan_add_remote(NAME artifactory-ssrobins
+    INDEX 0
+    URL https://ssrobins.jfrog.io/artifactory/api/conan/conan
+    VERIFY_SSL True)
+
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
+foreach(TYPE ${CMAKE_CONFIGURATION_TYPES})
+    conan_cmake_install(PATH_OR_REFERENCE ${CMAKE_SOURCE_DIR}
+        BUILD ${conan_build_option}
+        UPDATE
+        SETTINGS ${conan_args};build_type=${TYPE})
+endforeach()
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
+set(CMAKE_FIND_ROOT_PATH ${CMAKE_BINARY_DIR})
+
+find_package(box2d REQUIRED)
+find_package(sfml REQUIRED)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS NO_OUTPUT_DIRS)

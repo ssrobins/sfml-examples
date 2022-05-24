@@ -9,7 +9,7 @@ target_assets(10_Bejeweled
 )
 
 target_link_libraries(10_Bejeweled
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(10_Bejeweled)

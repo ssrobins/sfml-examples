@@ -9,7 +9,7 @@ target_assets(03_Arkanoid
 )
 
 target_link_libraries(03_Arkanoid
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(03_Arkanoid)

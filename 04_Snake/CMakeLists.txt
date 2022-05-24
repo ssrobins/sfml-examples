@@ -9,7 +9,7 @@ target_assets(04_Snake
 )
 
 target_link_libraries(04_Snake
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(04_Snake)

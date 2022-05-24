@@ -13,8 +13,8 @@ target_include_directories(15_Volleyball PRIVATE
 )
 
 target_link_libraries(15_Volleyball
-    CONAN_PKG::box2d
-    CONAN_PKG::sfml
+    box2d::box2d
+    sfml::sfml
 )
 
 install_executable(15_Volleyball)

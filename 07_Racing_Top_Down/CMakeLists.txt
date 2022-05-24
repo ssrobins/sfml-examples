@@ -9,7 +9,7 @@ target_assets(07_Racing_Top_Down
 )
 
 target_link_libraries(07_Racing_Top_Down
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(07_Racing_Top_Down)
