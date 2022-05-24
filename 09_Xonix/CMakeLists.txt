@@ -9,7 +9,7 @@ target_assets(09_Xonix
 )
 
 target_link_libraries(09_Xonix
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(09_Xonix)

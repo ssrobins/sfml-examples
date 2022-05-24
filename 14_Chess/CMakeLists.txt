@@ -9,7 +9,7 @@ target_assets(14_Chess
 )
 
 target_link_libraries(14_Chess
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(14_Chess)

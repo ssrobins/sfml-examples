@@ -9,7 +9,7 @@ target_assets(01_Tetris
 )
 
 target_link_libraries(01_Tetris
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(01_Tetris)

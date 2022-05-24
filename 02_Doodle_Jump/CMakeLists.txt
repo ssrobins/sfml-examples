@@ -9,7 +9,7 @@ target_assets(02_Doodle_Jump
 )
 
 target_link_libraries(02_Doodle_Jump
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(02_Doodle_Jump)

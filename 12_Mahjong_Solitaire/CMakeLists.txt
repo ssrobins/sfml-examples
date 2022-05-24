@@ -9,7 +9,7 @@ target_assets(12_Mahjong_Solitaire
 )
 
 target_link_libraries(12_Mahjong_Solitaire
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(12_Mahjong_Solitaire)

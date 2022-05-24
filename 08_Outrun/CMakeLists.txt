@@ -9,7 +9,7 @@ target_assets(08_Outrun
 )
 
 target_link_libraries(08_Outrun
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(08_Outrun)

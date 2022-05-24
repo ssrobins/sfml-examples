@@ -9,7 +9,7 @@ target_assets(16_Asteroids
 )
 
 target_link_libraries(16_Asteroids
-    CONAN_PKG::sfml
+    sfml::sfml
 )
 
 install_executable(16_Asteroids)
