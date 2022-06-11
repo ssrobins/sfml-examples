@@ -29,7 +29,7 @@ elseif(UNIX)
         message("Unhandled compiler, ${CMAKE_CXX_COMPILER_ID}, Conan install command may fail")
     endif()
     set(conan_args os=Linux;arch=${CMAKE_SYSTEM_PROCESSOR};compiler=${compiler};compiler.version=${compiler_version};compiler.libcxx=libstdc++11;compiler.cppstd=${CMAKE_CXX_STANDARD})
-    #set(conan_profile_host ${CMAKE_SOURCE_DIR}/profiles/linux)
+    set(conan_profile_host ${CMAKE_SOURCE_DIR}/profiles/linux)
 elseif(MSVC)
     set(conan_args arch=x86;compiler=msvc;compiler.version=${compiler_version};compiler.runtime=static;compiler.cppstd=${CMAKE_CXX_STANDARD})
 else()
@@ -61,7 +61,8 @@ foreach(TYPE ${CMAKE_CONFIGURATION_TYPES})
     conan_cmake_install(PATH_OR_REFERENCE ${CMAKE_SOURCE_DIR}
         BUILD ${conan_build_option}
         UPDATE
-        SETTINGS ${conan_args};build_type=${TYPE})
+        SETTINGS ${conan_args};build_type=${TYPE}
+        PROFILE_HOST ${conan_profile_host})
 endforeach()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
