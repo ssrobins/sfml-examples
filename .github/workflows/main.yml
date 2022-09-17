@@ -53,7 +53,9 @@ jobs:
         uses: ssrobins/install-cmake@main
 
       - name: Install Conan
-        run: pip3 install conan --pre --upgrade
+        run: |
+          pip3 install conan --pre --upgrade
+          conan_profile_fixes
 
       - name: Print versions
         run: |
