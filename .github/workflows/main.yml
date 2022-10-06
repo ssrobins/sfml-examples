@@ -38,16 +38,20 @@ jobs:
       - name: Print environment variables
         run: env
 
-      - name: Install required Linux packages
-        if: matrix.name == 'linux'
-        run: sudo apt-get install ninja-build python3-setuptools -y
-
       - name: Import Code-Signing Certificates
         if: matrix.name == 'macos'
         uses: apple-actions/import-codesign-certs@v1
         with:
           p12-file-base64: ${{ secrets.APPLE_CERTIFICATES }}
           p12-password: ${{ secrets.APPLE_CERTIFICATES_PASSWORD }}
+
+      - name: Set Xcode version
+        if: matrix.name == 'macos'
+        run: sudo xcode-select --switch /Applications/Xcode_13.4.1.app/Contents/Developer
+
+      - name: Install required Linux packages
+        if: matrix.name == 'linux'
+        run: sudo apt-get install ninja-build python3-setuptools -y
 
       - name: Install CMake
         uses: ssrobins/install-cmake@main
@@ -64,8 +68,6 @@ jobs:
 
       - name: Build
         run:  ${{ matrix.build_script }} --noConanPkgBuild --config Release
-        env:
-          DEVELOPER_DIR: /Applications/Xcode_13.4.1.app/Contents/Developer
 
       - uses: actions/upload-artifact@v2
         with:
