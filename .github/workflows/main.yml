@@ -38,16 +38,16 @@ jobs:
       - name: Print environment variables
         run: env
 
-      - name: Set Xcode version
-        if: matrix.name == 'macos'
-        run: sudo xcode-select --switch /Applications/Xcode_13.4.1.app/Contents/Developer
-
       - name: Import Code-Signing Certificates
         if: matrix.name == 'macos'
         uses: apple-actions/import-codesign-certs@v1
         with:
           p12-file-base64: ${{ secrets.APPLE_CERTIFICATES }}
           p12-password: ${{ secrets.APPLE_CERTIFICATES_PASSWORD }}
+
+      - name: Set Xcode version
+        if: matrix.name == 'macos'
+        run: sudo xcode-select --switch /Applications/Xcode_13.4.1.app/Contents/Developer
 
       - name: Install required Linux packages
         if: matrix.name == 'linux'
