@@ -1,21 +1,21 @@
 {
-    "version": 3,
+    "version": 6,
     "cmakeMinimumRequired": {
         "major": 3,
-        "minor": 21,
+        "minor": 25,
         "patch": 0
     },
     "configurePresets": [
         {
             "name": "default",
             "hidden": true,
+            "binaryDir": "${sourceDir}/build_${presetName}",
             "cmakeExecutable": "cmake.exe"
         },
         {
             "name": "linux",
             "inherits": "default",
             "generator": "Ninja Multi-Config",
-            "binaryDir": "${sourceDir}/build_${presetName}",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -26,7 +26,6 @@
             "name": "macos",
             "inherits": "default",
             "generator": "Xcode",
-            "binaryDir": "${sourceDir}/build_${presetName}",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
@@ -38,12 +37,190 @@
             "inherits": "default",
             "generator": "Visual Studio 17 2022",
             "architecture": "Win32",
-            "binaryDir": "${sourceDir}/build_${presetName}",
             "condition": {
                 "type": "equals",
                 "lhs": "${hostSystemName}",
                 "rhs": "Windows"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "verbose": true
+        },
+        {
+            "name": "linuxDebug",
+            "inherits": "default",
+            "configurePreset": "linux",
+            "configuration": "Debug"
+        },
+        {
+            "name": "linuxRelease",
+            "inherits": "default",
+            "configurePreset": "linux",
+            "configuration": "Release"
+        },
+        {
+            "name": "macosDebug",
+            "inherits": "default",
+            "configurePreset": "macos",
+            "configuration": "Debug"
+        },
+        {
+            "name": "macosRelease",
+            "inherits": "default",
+            "configurePreset": "macos",
+            "configuration": "Release"
+        },
+        {
+            "name": "windowsDebug",
+            "inherits": "default",
+            "configurePreset": "windows",
+            "configuration": "Debug"
+        },
+        {
+            "name": "windowsRelease",
+            "inherits": "default",
+            "configurePreset": "windows",
+            "configuration": "Release"
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "linuxDebug",
+            "configurePreset": "linux",
+            "configurations": ["Debug"]
+        },
+        {
+            "name": "linuxRelease",
+            "configurePreset": "linux",
+            "configurations": ["Release"]
+        },
+        {
+            "name": "macosDebug",
+            "configurePreset": "macos",
+            "configurations": ["Debug"]
+        },
+        {
+            "name": "macosRelease",
+            "configurePreset": "macos",
+            "configurations": ["Release"]
+        },
+        {
+            "name": "windowsDebug",
+            "configurePreset": "windows",
+            "configurations": ["Debug"]
+        },
+        {
+            "name": "windowsRelease",
+            "configurePreset": "windows",
+            "configurations": ["Release"]
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "linuxDebug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "linux"
+                },
+                {
+                    "type": "build",
+                    "name": "linuxDebug"
+                },
+                {
+                    "type": "package",
+                    "name": "linuxDebug"
+                }
+            ]
+        },
+        {
+            "name": "linuxRelease",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "linux"
+                },
+                {
+                    "type": "build",
+                    "name": "linuxRelease"
+                },
+                {
+                    "type": "package",
+                    "name": "linuxRelease"
+                }
+            ]
+        },
+        {
+            "name": "macosDebug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "macos"
+                },
+                {
+                    "type": "build",
+                    "name": "macosDebug"
+                },
+                {
+                    "type": "package",
+                    "name": "macosDebug"
+                }
+            ]
+        },
+        {
+            "name": "macosRelease",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "macos"
+                },
+                {
+                    "type": "build",
+                    "name": "macosRelease"
+                },
+                {
+                    "type": "package",
+                    "name": "macosRelease"
+                }
+            ]
+        },
+        {
+            "name": "windowsDebug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "windows"
+                },
+                {
+                    "type": "build",
+                    "name": "windowsDebug"
+                },
+                {
+                    "type": "package",
+                    "name": "windowsDebug"
+                }
+            ]
+        },
+        {
+            "name": "windowsRelease",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "windows"
+                },
+                {
+                    "type": "build",
+                    "name": "windowsRelease"
+                },
+                {
+                    "type": "package",
+                    "name": "windowsRelease"
+                }
+            ]
         }
     ]
 }
