@@ -43,6 +43,7 @@ endif()
 
 execute_process(
     COMMAND conan --version
+    COMMAND_ECHO STDOUT
     ERROR_QUIET
     OUTPUT_VARIABLE conan_output
     RESULT_VARIABLE conan_result
@@ -63,12 +64,14 @@ set(conan_remote_name artifactory-ssrobins)
 set(conan_remote_url https://ssrobins.jfrog.io/artifactory/api/conan/conan)
 execute_process(
     COMMAND conan remote update ${conan_remote_name} --url ${conan_remote_url}
+    COMMAND_ECHO STDOUT
     ERROR_QUIET
     RESULT_VARIABLE conan_result
 )
 if(conan_result)
     execute_process(
         COMMAND conan remote add ${conan_remote_name} ${conan_remote_url}
+        COMMAND_ECHO STDOUT
         RESULT_VARIABLE conan_result
     )
     if(conan_result)
@@ -80,6 +83,7 @@ set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
 foreach(TYPE ${CMAKE_CONFIGURATION_TYPES})
     execute_process(
         COMMAND conan install --output-folder ${CMAKE_BINARY_DIR} --remote ${conan_remote_name} ${CMAKE_SOURCE_DIR} ${conan_build_option} ${conan_args} -s build_type=${TYPE} --profile:host ${CMAKE_SOURCE_DIR}/profile.jinja
+        COMMAND_ECHO STDOUT
         RESULT_VARIABLE conan_result
     )
     if(conan_result)
