@@ -8,7 +8,6 @@ on:
   workflow_dispatch:
 
 env:
-  CONAN_REVISIONS_ENABLED: 1
   app_name: SFML-Examples
 
 jobs:
