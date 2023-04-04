@@ -20,7 +20,7 @@ jobs:
       matrix:
         include:
           - name: linux
-            os: ubuntu-18.04
+            os: ubuntu-20.04
           - name: macos
             os: macos-12
           - name:  windows
@@ -51,7 +51,7 @@ jobs:
 
       - name: Install Conan
         run: |
-          pip3 install conan --pre --upgrade
+          pip3 install conan==2.0.2
           conan profile detect
 
       - name: Print versions
