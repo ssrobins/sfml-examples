@@ -106,7 +106,7 @@ set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
 set(CMAKE_FIND_ROOT_PATH ${CMAKE_BINARY_DIR})
 
 find_package(box2d REQUIRED)
-find_package(sfml REQUIRED)
+find_package(SFML REQUIRED)
 
 include(cmake/global_settings.cmake)
 
