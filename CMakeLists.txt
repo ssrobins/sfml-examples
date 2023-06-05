@@ -69,8 +69,8 @@ if(CONAN_UPDATE)
     set(conan_update_option --update)
 endif()
 
-set(conan_remote_name artifactory-ssrobins)
-set(conan_remote_url https://ssrobins.jfrog.io/artifactory/api/conan/conan)
+set(conan_remote_name conancenter)
+set(conan_remote_url https://center.conan.io)
 execute_process(
     COMMAND ${conan_path} remote update ${conan_remote_name} --url ${conan_remote_url}
     COMMAND_ECHO STDOUT
@@ -106,15 +106,14 @@ set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
 set(CMAKE_FIND_ROOT_PATH ${CMAKE_BINARY_DIR})
 
 find_package(box2d REQUIRED)
-find_package(cmake_utils REQUIRED)
 find_package(sfml REQUIRED)
 
-include(${cmake_utils_PACKAGE_FOLDER_RELEASE}/global_settings.cmake)
+include(cmake/global_settings.cmake)
 
 # Helper functions
-include(${cmake_utils_PACKAGE_FOLDER_RELEASE}/add_executable_custom.cmake)
-include(${cmake_utils_PACKAGE_FOLDER_RELEASE}/install_executable.cmake)
-include(${cmake_utils_PACKAGE_FOLDER_RELEASE}/target_assets.cmake)
+include(cmake/add_executable_custom.cmake)
+include(cmake/install_executable.cmake)
+include(cmake/target_assets.cmake)
 
 # From 16 games in C++/SFML YouTube tutorial:
 # https://www.youtube.com/user/FamTrinli/playlists
