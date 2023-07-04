@@ -74,6 +74,14 @@ jobs:
           cmake --version
           conan --version
 
+      - name: Export edited Conan recipes
+        run: |
+          git clone https://github.com/ssrobins/conan-center-index.git
+          cd conan-center-index
+          git checkout package-fixes
+          cd recipes/sfml/all
+          conan export . --version 2.5.1
+
       - name: Configure
         run: cmake --preset=${{ matrix.name }} -D CONAN_UPDATE=ON
 
