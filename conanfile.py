@@ -6,10 +6,10 @@ class Conan(ConanFile):
     settings = "os", "arch", "compiler", "build_type"
     generators = "CMakeDeps"
     default_options = {
-        "sfml/*:window": True,
+        "sfml/*:audio": False,
         "sfml/*:graphics": True,
         "sfml/*:network": False,
-        "sfml/*:audio": False,
+        "sfml/*:window": True,
     }
 
     def requirements(self):
