@@ -65,7 +65,7 @@ int main()
                 for(int x=0;x<30;x++)
                     if (f(x,y,z)>0 && isOpen(x,y,z)) opens.push_back(Vector3i(x,y,z));
 
-        int n=opens.size();
+        auto n = static_cast<int>(opens.size());
         if (n<2) break;
         int a=0,b=0;
         while(a==b){a=rand()%n;b=rand()%n;}
@@ -91,7 +91,7 @@ int main()
             if (e.type == Event::MouseButtonReleased)
                 if (e.mouseButton.button == Mouse::Right)
                 {
-                    int n = moves.size();
+                    auto n = static_cast<int>(moves.size());
                     if (n==0) continue;
                     f(moves[n-1])*=-1; moves.pop_back();
                     f(moves[n-2])*=-1; moves.pop_back();

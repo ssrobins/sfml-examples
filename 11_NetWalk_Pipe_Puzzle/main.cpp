@@ -174,7 +174,7 @@ int main()
             {
                 pipe &p = grid[j][i];
 
-                int kind = p.dirs.size();
+                auto kind = static_cast<int>(p.dirs.size());
                 if (kind==2 && p.dirs[0]==-p.dirs[1]) kind=0;
 
                 p.angle+=5;

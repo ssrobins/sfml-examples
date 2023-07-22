@@ -36,7 +36,7 @@ public:
     void update()
     {
         Frame += speed;
-        int n = frames.size();
+        auto n = static_cast<int>(frames.size());
         if (Frame >= n) Frame -= n;
         if (n>0) sprite.setTextureRect( frames[int(Frame)] );
     }

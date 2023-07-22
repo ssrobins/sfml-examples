@@ -106,7 +106,7 @@ int main()
         lines.push_back(line);
     }
 
-    int N = lines.size();
+    auto N = static_cast<int>(lines.size());
     float playerX = 0;
     int pos = 0;
     int H = 1500;
