@@ -14,4 +14,4 @@ class Conan(ConanFile):
 
     def requirements(self):
         self.requires("box2d/2.3.1")
-        self.requires("sfml/2.5.1")
+        self.requires("sfml/2.6.1")
