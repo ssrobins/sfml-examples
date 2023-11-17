@@ -67,7 +67,7 @@ jobs:
       - name: Install Conan
         run: |
           pip3 install conan --upgrade
-          conan profile detect
+          conan profile detect --force
 
       - name: Print versions
         run: |
