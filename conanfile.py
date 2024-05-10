@@ -14,4 +14,5 @@ class Conan(ConanFile):
 
     def requirements(self):
         self.requires("box2d/2.3.1")
+        self.requires("freetype/2.13.2#dfa3d504cae4a08d5c72113bd6f28498")
         self.requires("sfml/2.6.1")
